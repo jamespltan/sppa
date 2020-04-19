@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='sppa',
-    version='1.0.5',
+    version='1.0.6',
     packages=['sppa'],
     install_requires=['numpy', 'pulp'],
     url='https://github.com/jamespltan/sppa',
