@@ -1,6 +1,7 @@
 from sppa.constants import available_solvers
 import traceback
-from pulp import LpProblem, LpMinimize, LpVariable, lpSum, LpStatus, solvers
+from pulp import LpProblem, LpMinimize, LpVariable, lpSum, LpStatus
+import pulp
 from sppa.Utilities import *
 
 
@@ -17,9 +18,9 @@ class MILPsolver:
             try:
                 if self.solver_name == 'cbc':
                     #self.prob.solve(solvers.PULP_CBC_CMD(msg=milp_msg, maxSeconds=None, fracGap=None))
-                    self.prob.solve(solvers.PULP_CBC_CMD(msg=milp_msg, fracGap=epgap))
+                    self.prob.solve(pulp.PULP_CBC_CMD(msg=milp_msg, fracGap=epgap))
                 if self.solver_name == 'cplex':
-                    self.prob.solve(solvers.CPLEX_PY(msg=milp_msg, epgap=epgap))
+                    self.prob.solve(pulp.CPLEX_PY(msg=milp_msg, epgap=epgap))
             except Exception:
                 raise Exception('The MILP solver failed. ')
             if self.prob.status != 1 and self.prob.status != -1:
