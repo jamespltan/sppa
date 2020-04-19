@@ -11,5 +11,5 @@ setup(
     author='James Tan',
     author_email='jamestan@ntu.edu.sg',
     description='SPPA MINLP solver'
-    classifiers=['Programming Language :: Python :: 3']
+    classifiers=['Programming Language :: Python :: 3'],
 )
