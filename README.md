@@ -71,7 +71,7 @@ prob.add_equality_constraint(C - NlinExpr(div_fun, D, di), 'C_def')
 prob.add_equality_constraint(K - NlinExpr(K_fun, C), 'K_def')
 prob.add_equality_constraint(del_ - NlinExpr(del_fun, N, D, di))
 
-# add inequality constraints
+# add inequality constraints (expression >= 0)
 prob.add_inequality_constraint(S - NlinExpr(S_fun, K, D, di))
 prob.add_inequality_constraint(lmax - Pmax*del_ - NlinExpr(lmax_fun, N, di))
 prob.add_inequality_constraint(Dmax - D - NlinExpr(d_fun, di))
