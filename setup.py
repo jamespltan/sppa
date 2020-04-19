@@ -10,6 +10,6 @@ setup(
     license='MIT',
     author='James Tan',
     author_email='jamestan@ntu.edu.sg',
-    description='SPPA MINLP solver'
+    description='SPPA MINLP solver',
     classifiers=['Programming Language :: Python :: 3'],
 )
