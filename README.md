@@ -1,6 +1,6 @@
 # sppa
 
-Sequential Piecewise Planar Approximation (SPPA) for piecewise linear programming. A convergent MINLP solver for mathematical programming problems. Arxiv preprint: (tba). 
+Sequential Piecewise Planar Approximation (SPPA) for piecewise linear programming. A convergent MINLP solver for mathematical programming problems. Arxiv preprint: [https://arxiv.org/abs/2004.09474](https://arxiv.org/abs/2004.09474). 
 
 ## Installation
 
