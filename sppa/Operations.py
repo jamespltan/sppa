@@ -321,10 +321,15 @@ class NlinExprInfo:
             self.decomposed_vars = np.full([len(self.vars_fun)] + self.vars_pieces + [n_simplices], None)
             self.decomposed_bins = np.full(self.vars_pieces + [n_simplices], None)
 
+        f_vertex = {}
+        for cube_id in self.cube_ids:
+            vertex_cube = tuple(vf.vertices[cube_id[j]] for j, vf in enumerate(self.vars_fun))
+            f_vertex[vertex_cube] = self.fun_nlin(*vertex_cube, **self.kwargs)
+
         for cube_id in self.cube_ids:
             cube_id_str = ','.join([str(dimension_id) for dimension_id in cube_id])
             vertex_cube = [vf.vertices[cube_id[j]] for j, vf in enumerate(self.vars_fun)]
-            f_vertex_cube = self.fun_nlin(*vertex_cube, **self.kwargs)
+            f_vertex_cube = f_vertex[tuple(vertex_cube)]
             for simplex_index_id, simplex_id in enumerate(self.simplex_ids):
                 simplex_id_str = str(simplex_index_id)
                 cum_const = 0
@@ -334,8 +339,10 @@ class NlinExprInfo:
                     var_fun = self.vars_fun[dimension_step]
                     vertex_index = cube_id[dimension_step]
                     vertex_b[dimension_step] = var_fun.vertices[vertex_index + 1]
-                    f_vertex_a = self.fun_nlin(*vertex_a, **self.kwargs)
-                    f_vertex_b = self.fun_nlin(*vertex_b, **self.kwargs)
+                    if tuple(vertex_b) not in f_vertex:
+                        f_vertex[(tuple(vertex_b))] = self.fun_nlin(*vertex_b, **self.kwargs)
+                    f_vertex_a = f_vertex[tuple(vertex_a)]
+                    f_vertex_b = f_vertex[tuple(vertex_b)]
                     coeff = f_vertex_b - f_vertex_a
                     d = var_fun.vertices[vertex_index + 1] - var_fun.vertices[vertex_index]
                     coeff = coeff / d
