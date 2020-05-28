@@ -31,7 +31,7 @@ class MILPsolver:
 
     def initialize_problem(self):
         if self.solver_name == 'cbc' or self.solver_name == 'cplex':
-            self.prob = LpProblem("Optimization Problem", LpMinimize)
+            self.prob = LpProblem("Optimization_Problem", LpMinimize)
             self.solved_variables = {}
             self.opt_variables = {}
 
