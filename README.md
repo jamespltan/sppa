@@ -79,7 +79,7 @@ prob.add_inequality_constraint(delm - Pload*del_)
 prob.add_inequality_constraint((Pmax-Pload)*del_ - delw)
 
 # solve problem
-prob.compile(initial_n_pieces=4, n_pieces=3, solver='cplex', contract_frac=0.8)
+prob.compile(initial_n_pieces=4, n_pieces=3, solver='cbc', contract_frac=0.8)
 prob.write()
 prob.set_termination_criteria(ftol=None, xtol=1E-6, computation_time=None, max_iterations=100)
 result = prob.solve()
